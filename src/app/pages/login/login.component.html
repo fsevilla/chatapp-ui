@@ -1,0 +1,19 @@
+<div>
+    <form (submit)="login()">
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input name="email" matInput type="text" [(ngModel)]="credentials.email">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input name="password" matInput [type]="fieldType" [(ngModel)]="credentials.password">
+            <mat-icon matSuffix (click)="togglePassword()">{{ fieldType === 'password' ?  'visibility' : 'visibility_off' }}</mat-icon>
+        </mat-form-field>
+
+
+        <button [disabled]="!isValid()" mat-flat-button color="primary">Log in</button>
+
+        <p>Not registered? <a routerLink="/signup">Sign up here</a></p>
+    </form>
+</div>
