@@ -11,6 +11,8 @@
             <mat-icon matSuffix (click)="togglePassword()">{{ fieldType === 'password' ?  'visibility' : 'visibility_off' }}</mat-icon>
         </mat-form-field>
 
+        <mat-error *ngIf="error">Wrong credentials</mat-error>
+
 
         <button [disabled]="!isValid()" mat-flat-button color="primary">Log in</button>
 

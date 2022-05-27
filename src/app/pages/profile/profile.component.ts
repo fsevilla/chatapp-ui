@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ProfileService } from 'src/app/shared/services/profile.service';
+
 @Component({
   selector: 'dw-profile',
   templateUrl: './profile.component.html',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  user: any = {};
+
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit(): void {
+    this.profileService.getProfile().subscribe({
+      next: response => {
+        console.log('Perfil: ', response);
+        this.user = response;
+      },
+      error: err => {
+        console.log('Error: ', err);
+      }
+    })
   }
 
 }

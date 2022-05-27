@@ -28,9 +28,13 @@
         <input type="password" matInput formControlName="confirm">
     </mat-form-field>
 
+    <mat-error *ngIf="form.errors">Passwords don't match</mat-error>
+
+
     <div>
         <mat-checkbox matInput formControlName="terms">I accept the terms and conditions </mat-checkbox>
     </div>
+
 
     <button [disabled]="form.invalid" mat-flat-button color="primary">Sign up</button>
 

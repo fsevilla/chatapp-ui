@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Credentials } from 'src/app/shared/interfaces/credentials';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { LoginService } from 'src/app/shared/services/login.service';
 
 @Component({
   selector: 'dw-login',
@@ -11,14 +14,26 @@ export class LoginComponent implements OnInit {
 
   credentials: Credentials = { email: '', password: '' };
   fieldType: string = 'password';
+  error: boolean = false;
 
-  constructor() { }
+  constructor(private loginService: LoginService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   login() {
-    console.log('Enviar datos...', this.credentials);
+    this.loginService.login(this.credentials).subscribe({
+      next: response => {
+        this.error = false;
+        console.log('Response: ', response);
+        this.authService.save(response.token);
+        this.router.navigate(['/']);
+      },
+      error: err => {
+        this.error = true;
+      },
+      complete: () => {}
+    });
   }
 
   togglePassword() {
