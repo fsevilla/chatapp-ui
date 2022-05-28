@@ -26,6 +26,10 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  test() {
+    console.log('El evento subio al padre');
+  }
+
 }
 
 

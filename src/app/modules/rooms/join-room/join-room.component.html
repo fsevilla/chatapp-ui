@@ -1,1 +1,7 @@
-<p>join-room works!</p>
+<form (submit)="joinRoom()">
+    <mat-form-field>
+        <mat-label>Code</mat-label>
+        <input matInput type="text" name="code" [(ngModel)]="code">
+    </mat-form-field>
+    <button mat-flat-button color="primary">Join</button>
+</form>

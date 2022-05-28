@@ -12,4 +12,8 @@ export class RoomService {
   getRooms(): Observable<any> {
     return this.httpService.get('rooms/find');
   }
+
+  joinRoom(code: string): Observable<any> {
+    return this.httpService.get('rooms/' + code  + '/join');
+  }
 }

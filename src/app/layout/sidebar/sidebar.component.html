@@ -1,5 +1,5 @@
 <mat-list>
-    <mat-list-item *ngFor="let item of options">
-        <a [routerLink]="item.path">{{ item.label }}</a>
+    <mat-list-item (click)="test()" *ngFor="let item of options">
+        <a dwStopEvent [routerLink]="item.path">{{ item.label }}</a>
     </mat-list-item>
 </mat-list>
