@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-
 import { Observable } from 'rxjs';
-import { HttpService } from './http.service';
+import { HttpService } from 'src/app/shared/services/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileService {
+export class RoomService {
 
   constructor(private httpService: HttpService) { }
 
-  getProfile(): Observable<any> {
-    return this.httpService.get('auth/me');
+  getRooms(): Observable<any> {
+    return this.httpService.get('rooms/find');
   }
 }

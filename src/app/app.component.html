@@ -1,8 +1,8 @@
 <dw-header (onToggle)="drawer.toggle()"></dw-header>
 
 <mat-drawer-container>
-    <mat-drawer #drawer mode="side" opened>
-        <dw-sidebar></dw-sidebar>
+    <mat-drawer #drawer mode="side">
+        <dw-sidebar *ngIf="isLoggedIn"></dw-sidebar>
     </mat-drawer>
     <mat-drawer-content>
         <router-outlet></router-outlet>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +8,15 @@ export class AuthService {
 
   private key: string = 'dw-chat-token';
 
-  constructor() { }
+  loginStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  constructor() {
+    this.loginStatus.next(this.isLoggedIn());
+  }
 
   save(token: string): void {
     localStorage.setItem(this.key, token);
+    this.loginStatus.next(true);
   }
 
   get(): string {
@@ -24,5 +30,6 @@ export class AuthService {
 
   remove(): void {
     localStorage.removeItem(this.key);
+    this.loginStatus.next(false);
   }
 }
